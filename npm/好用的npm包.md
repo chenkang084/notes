@@ -1,7 +1,8 @@
 # 好用的npm包
 @(nodejs)
 - [chalk](https://github.com/chalk/chalk) : 可以在控制台上输出各种style,color,background。
-![Alt text](./screenshot.png)
+![Alt text](../imgs/7d972749-3436-40f9-b6b7-6e00eff9d8ad.png)
+
 - [dotenv](https://github.com/motdotla/dotenv) : 在工程的根目录建立**.env**文件，可以将该文件内容读取到**process.env**对象上。
 ```javascript
 //.env
