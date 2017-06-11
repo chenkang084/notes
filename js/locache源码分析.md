@@ -1,4 +1,28 @@
-# 为开发自己js库做的一些准备
+# locache[源码](https://github.com/d0ugal-archive/locache/blob/0.4.0/locache.js)分析
+
+> 以0.4.0版本为例。
+
+```
+// Object context bnding shim to support older versions of IE.
+var bind = function (func, thisValue) {
+    return function () {
+        return func.apply(thisValue, arguments);
+    };
+};
+
+```
+该代码主要是绑定函数执行时，当前this的指向，和xx.bind(this)功能一样。其实就是es5 中新增的bind()方法的具体实现，保证浏览器兼容。
+
+## 从整体的角度看locache的源码，主要是如下结构：
+- a.定义构造方法；
+```
+function LocacheCache(options){
+  //...
+}
+```
+- b.为LocacheCache定义各种需要的原型属性和方法。
+
+- c.最后声明locache变量，值为new LocacheCache()，将locache绑定到window上。正常情况下，该js在页面中只会执行一次，所以，window.locache 的值是单例的。
 
 ## 分析[locache](https://github.com/d0ugal-archive/locache/blob/0.4.0/locache.js)其中异步模块代码
 
@@ -113,3 +137,5 @@ var defer = (LocacheCache.prototype._defer = (function() {}
 ```
 
 > 该段代码表示，将后面的立即执行函数的结果赋值给LocacheCache.prototype._defer。由于(...)这种写法，将赋值的结果又传给了defer。所以，相当于 defer = LocacheCache.prototype._defer = (function() {}))
+
+- 判断当前浏览器环境是否支持某种api时，可以通过try catch方法进行判断，如源码[79行](https://github.com/d0ugal-archive/locache/blob/0.4.0/locache.js#L79)。

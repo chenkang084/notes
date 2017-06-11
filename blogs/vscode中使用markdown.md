@@ -40,9 +40,21 @@ EverMonkey插件是本文的**重点**，该插件主要负责将vscode中的文
 ...
   # xxx
 ```
-完成文章内容编写之后，输入`Ctrl+Shift+P`打开command,输入`ever publish`,提示成功后，就可以在印象笔记客户端看到文章加入到了指定的目录里（如果客户端没有自动更新，请尝试手动更新）。
+完成文章内容编写之后，输入`Ctrl+Shift+P`打开command,输入`ever publish`,提示成功后，就可以在印象笔记客户端看到文章加入到了指定的目录里（如果客户端没有自动更新，请尝试手动更新）,快速提交文章的快捷键是`Alt+P`。
 > 重要提示：如果报`Evernote Error: 5 - Note.title`，错误（这个错误坑了好一会）。说明是换行符有问题，请将vscode右下角的换行符从`CRLF`切换成`LF`,然后再次执行`ever publish`，就会有`blogs>>vscode中使用印象笔记 created successfully.`提示。如果还有错误，请到[git issue](https://github.com/michalyao/evermonkey/issues)查找相关问题。
 ![Auto-Open Markdown Preview 预览效果](https://raw.githubusercontent.com/chenkang084/notes/master/imgs/blogs/vscode-3.png)
+
+### 4.将Preview 设置为github风格
+vscode 默认的将Preview预览风格是黑黑的，如上面的截图。如果想更改为github风格的样式，请执行如下步骤：
+  - a.下载github风格的[css](https://github.com/raycon/vscode-markdown-css/blob/master/markdown-github.css)到本地，并放置相应的目录，本文推荐放置在vscode安装目录里，如`D:/Program Files (x86)/Microsoft VS Code/resources/app/extensions/markdown/media/`。
+  - b.设置用户配置文件,`File --> Preferences --> Settings`,添加如下配置信息，请填入你下载的css文件的**路径**和**名称**（我这里的文件名叫userStyle.css）。
+  ```
+    "markdown.styles": [
+        "file:///D:/Program Files (x86)/Microsoft VS Code/resources/app/extensions/markdown/media/userStyle.css"
+    ],
+  ```
+![github 样式效果图](https://raw.githubusercontent.com/chenkang084/notes/master/imgs/blogs/vscode-4.png)
+
 
 ## 总结：
 马克飞象是一款非常好用的印象笔记插件，完全可以胜任以上所有功能，而且界面非常华丽，使用也很简单，但是，**要收费。。。** 之前用sublime的时候，就使用过相关插件，在sublime 里面实现编辑文章，同步到印象笔记。现在使用vscode比较多，就试试看有没有相关的功能，结果是肯定的（vscode这么优秀，怎能没有呢）。所以就尝试了一下，但是，遇到了个坑，就是`Evernote Error: 5 - Note.title`，查了半天说是`CRLF`切换成`LF`，我也确实在用户配置里面设置了，但是，就是不生效。最后，无意间发现，右下角显示的还是`CRLF`,然后尝试着点了一下，竟然可以改为`LF`,再然后呢，就没有然后了，OK了。<br>
