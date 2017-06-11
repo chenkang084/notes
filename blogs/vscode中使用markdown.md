@@ -51,6 +51,7 @@ EverMonkey插件是本文的**重点**，该插件主要负责将vscode中的文
 
 还有一个功能是马克飞象、印象笔记做不到的，印象笔记的内容保存在哪里我们并不知道，如果你想将这些内容同步到git上面，貌似是没有办法的。而使用vscode写*.md，文件内容都是在你指定的目录中，你可以随时将这些文件add,commit,push到git上面，是不是很方便。。。
 
-> ps:这篇文章我就是用上述方法编辑的，非常方便，而且我直接push到我的[git仓库了](https://github.com/chenkang084/notes/blob/master/blogs/vscode%E4%B8%AD%E4%BD%BF%E7%94%A8markdown.md)。在git页面，直接复制该dom的html源码，贴到博客园就可以自动呈现格式化后的样子（虽然代码块、区域文本显示不太正常），还是很方便。
+> ps:这篇文章我就是用上述方法编辑的，非常方便，而且我直接push到我的[git仓库了](https://github.com/chenkang084/notes/blob/master/blogs/vscode%E4%B8%AD%E4%BD%BF%E7%94%A8markdown.md)。在git页面，直接复制该dom的html源码，贴到博客园就可以自动呈现格式化后的样子（虽然代码块、区域文本显示不太正常），还是很方便。<br>
+如果照片加载不全或者失败，可以直接访问本文[git页面](https://github.com/chenkang084/notes/blob/master/blogs/vscode%E4%B8%AD%E4%BD%BF%E7%94%A8markdown.md)。
 
 ### 本文原创，欢迎转载，但请指明出处。如有错误，欢迎指正。
