@@ -26,9 +26,9 @@ EverMonkey插件是本文的**重点**，该插件主要负责将vscode中的文
 ![Auto-Open Markdown Preview 预览效果](https://raw.githubusercontent.com/chenkang084/notes/master/imgs/blogs/vscode-2.gif)
 - b.输入你的印象笔记的账号密码，然后授权，就可以看到`token、noteStoreUrl`。
 - c.将 `token、noteStoreUrl`配置到vscode的用户设置里面。步骤为`File --> Preferences --> Settings`，左边是系统默认设置，右边是用户自定义设置，在右侧配置token、noteStoreUrl，按照标准的json格式输入，key和value都需要加英文的双引号。
-> evermonkey.token: your developer token
+> evermonkey.token: your developer token<br>
   evermonkey.noteStoreUrl: your API url
-- d.完成以上步骤，基本就算ok了，建议重启一下vscode，然后输入快捷键`Ctrl+Shift+P`打开command,输入`ever sync`，synchronize successfully!(第一次同步可能有点慢，请耐心等待一下)，代表EverMonkey插件已经和印象笔记通信成功！如果报错，请去[git issue](https://github.com/michalyao/evermonkey/issues) 上面先找是否已经有人提过该问题，如果没有，你可以开个issue给作者。一般你遇到的问题，很多人也遇到了，请在close 里面仔细查找。
+- d.完成以上步骤，基本就算ok了，建议重启一下vscode，然后输入快捷键`Ctrl+Shift+P`打开command,输入`ever sync`，左下角显示synchronize successfully!(第一次同步可能有点慢，请耐心等待一下)，代表EverMonkey插件已经和印象笔记通信成功！如果报错，请去[git issue](https://github.com/michalyao/evermonkey/issues) 上面先找是否已经有人提过该问题，如果没有，你可以开个issue给作者。一般你遇到的问题，很多人也遇到了，请在close 里面仔细查找。
 - e.上传vscode本地文件。新建本地文件，后缀为.md。在文件内容的最上方输入一下内容。
 ```javascript
 ---
@@ -41,7 +41,7 @@ EverMonkey插件是本文的**重点**，该插件主要负责将vscode中的文
   # xxx
 ```
 完成文章内容编写之后，输入`Ctrl+Shift+P`打开command,输入`ever publish`,提示成功后，就可以在印象笔记客户端看到文章加入到了指定的目录里（如果客户端没有自动更新，请尝试手动更新）。
-> 主要提示：如果报`Evernote Error: 5 - Note.title`，错误（这个错误坑了好一会）。说明是换行符有问题，请将vscode右下角的换行符从`CRLF`切换成`LF`,然后再次执行`ever publish`，就会有`blogs>>vscode中使用印象笔记 created successfully.`提示。如果还有错误，请到[git issue](https://github.com/michalyao/evermonkey/issues)查找相关问题。
+> 重要提示：如果报`Evernote Error: 5 - Note.title`，错误（这个错误坑了好一会）。说明是换行符有问题，请将vscode右下角的换行符从`CRLF`切换成`LF`,然后再次执行`ever publish`，就会有`blogs>>vscode中使用印象笔记 created successfully.`提示。如果还有错误，请到[git issue](https://github.com/michalyao/evermonkey/issues)查找相关问题。
 ![Auto-Open Markdown Preview 预览效果](https://raw.githubusercontent.com/chenkang084/notes/master/imgs/blogs/vscode-3.png)
 
 ## 总结：
@@ -50,3 +50,7 @@ EverMonkey插件是本文的**重点**，该插件主要负责将vscode中的文
 虽然费了一大会功夫，但是还是有收获的，就是，这个不要钱。。。<br>
 
 还有一个功能是马克飞象、印象笔记做不到的，印象笔记的内容保存在哪里我们并不知道，如果你想将这些内容同步到git上面，貌似是没有办法的。而使用vscode写*.md，文件内容都是在你指定的目录中，你可以随时将这些文件add,commit,push到git上面，是不是很方便。。。
+
+> ps:这篇文章我就是用上述方法编辑的，非常方便，而且我直接push到我的[git仓库了](https://github.com/chenkang084/notes/blob/master/blogs/vscode%E4%B8%AD%E4%BD%BF%E7%94%A8markdown.md)。在git页面，直接复制该dom的html源码，贴到博客园就可以自动呈现格式化后的样子（虽然代码块、区域文本显示不太正常），还是很方便。
+
+### 本文原创，欢迎转载，但请指明出处。如有错误，欢迎指正。

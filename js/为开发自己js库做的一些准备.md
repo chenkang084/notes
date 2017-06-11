@@ -1,8 +1,7 @@
 # 为开发自己js库做的一些准备
 
-## 1.以分析[locache](https://github.com/d0ugal-archive/locache/blob/0.4.0/locache.js)为例
+## 分析[locache](https://github.com/d0ugal-archive/locache/blob/0.4.0/locache.js)其中异步模块代码
 
-我们来分析如下代码：
 ```javascript
 // A defer implementation to avoid IO access blocking the current
 // thread. This is exposed on the LocacheCache prototype, simply so it
@@ -105,3 +104,12 @@ var defer = (LocacheCache.prototype._defer = (function() {
 })());
 
 ```
+- (...)。括号里面的代码直接执行。括号里面所以内容用逗号,分隔开。不能进行变量申明，可以进行赋值，计算，打印,函数执行等，并输出最后以后逗号中的结果。
+
+```
+var defer = (LocacheCache.prototype._defer = (function() {}
+  //...
+))
+```
+
+> 该段代码表示，将后面的立即执行函数的结果赋值给LocacheCache.prototype._defer。由于(...)这种写法，将赋值的结果又传给了defer。所以，相当于 defer = LocacheCache.prototype._defer = (function() {}))
