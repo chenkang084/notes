@@ -21,9 +21,24 @@ markdown有许多衍生产品，本文主要针对大家比较熟知的**印象�
 ![Auto-Open Markdown Preview 预览效果](https://raw.githubusercontent.com/chenkang084/notes/master/imgs/blogs/vscode-1.png)
 ### 3.EverMonkey配置说明。
 EverMonkey插件是本文的**重点**，该插件主要负责将vscode中的文章同步到印象笔记。在vscode中安装完EverMonkey插件后，我们安装官方说明，来一步一步的配置。
-- a.获取token、noteStoreUrl。快捷键`Ctrl+Shift+P`，打开command，输入`ever token`。
+- a.获取token、noteStoreUrl。快捷键`Ctrl+Shift+P`，打开command，输入`ever token`，这里我使用的是国际版Evernote，所以我选择的是International。
 ![Auto-Open Markdown Preview 预览效果](https://raw.githubusercontent.com/chenkang084/notes/master/imgs/blogs/vscode-2.gif)
-
-
-evermonkey.token: your developer token
-evermonkey.noteStoreUrl: your API url
+- b.输入你的印象笔记的账号密码，然后授权，就可以看到`token、noteStoreUrl`。
+- c.将 `token、noteStoreUrl`配置到vscode的用户设置里面。步骤为`File --> Preferences --> Settings`，左边是系统默认设置，右边是用户自定义设置，在右侧配置token、noteStoreUrl，按照标准的json格式输入，key和value都需要加英文的双引号。
+> evermonkey.token: your developer token
+  evermonkey.noteStoreUrl: your API url
+- d.完成以上步骤，基本就算ok了，建议重启一下vscode，然后输入快捷键`Ctrl+Shift+P`打开command,输入`ever sync`，synchronize successfully!(第一次同步可能有点慢，请耐心等待一下)，代表EverMonkey插件已经和印象笔记通信成功！如果报错，请去[git issue](https://github.com/michalyao/evermonkey/issues) 上面先找是否已经有人提过该问题，如果没有，你可以开个issue给作者。一般你遇到的问题，很多人也遇到了，请在close 里面仔细查找。
+- e.上传vscode本地文件。新建本地文件，后缀为.md。在文件内容的最上方输入一下内容。
+```javascript
+---
+  title: 文件名称
+  tags: 标签（多个标签用逗号分隔）
+  notebook: （所属的目录）
+---
+//下面是正文内容
+...
+  # xxx
+```
+完成文章内容编写之后，输入`Ctrl+Shift+P`打开command,输入`ever publish`,提示成功后，就可以在印象笔记客户端看到文章加入到了指定的目录里（如果客户端没有自动更新，请尝试手动更新）。
+> 主要提示：如果报`Evernote Error: 5 - Note.title`，错误（这个错误坑了好一会）。说明是换行符有问题，请将vscode右下角的换行符从`CRLF`切换成`LF`,然后再次执行`ever publish`，如果还有错误，请到[git issue](https://github.com/michalyao/evermonkey/issues)查找相关问题。
+![Auto-Open Markdown Preview 预览效果](https://raw.githubusercontent.com/chenkang084/notes/master/imgs/blogs/vscode-3.png)
