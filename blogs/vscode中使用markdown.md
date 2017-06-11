@@ -8,6 +8,7 @@ notebook: blogs
 
 - **vscode** 是微软推出一款轻量级的文本编辑工具，类似于sublime，由于其拥有丰富的插件，安装使用也非常简单，所以深受广大程序员的喜爱。
 - **markdown** 是一种可以使用普通文本编辑器编写的标记语言，通过简单的标记语法，它可以使普通文本内容具有一定的格式。
+- **印象笔记** 是一款具有笔记、写作、日程管理等诸多功能为一体的强大、易用型笔记本，拥有非常丰富的插件，其中比较好用的有**印象笔记·剪藏**，**马克飞象**，具体如何使用，请自行查阅相关资料。
 
 markdown有许多衍生产品，本文主要针对大家比较熟知的**印象笔记**为例，说明如何在vscode中使用*markdown语法编辑文章，同时将文章同步到印象笔记中*。
 
@@ -40,5 +41,12 @@ EverMonkey插件是本文的**重点**，该插件主要负责将vscode中的文
   # xxx
 ```
 完成文章内容编写之后，输入`Ctrl+Shift+P`打开command,输入`ever publish`,提示成功后，就可以在印象笔记客户端看到文章加入到了指定的目录里（如果客户端没有自动更新，请尝试手动更新）。
-> 主要提示：如果报`Evernote Error: 5 - Note.title`，错误（这个错误坑了好一会）。说明是换行符有问题，请将vscode右下角的换行符从`CRLF`切换成`LF`,然后再次执行`ever publish`，如果还有错误，请到[git issue](https://github.com/michalyao/evermonkey/issues)查找相关问题。
+> 主要提示：如果报`Evernote Error: 5 - Note.title`，错误（这个错误坑了好一会）。说明是换行符有问题，请将vscode右下角的换行符从`CRLF`切换成`LF`,然后再次执行`ever publish`，就会有`blogs>>vscode中使用印象笔记 created successfully.`提示。如果还有错误，请到[git issue](https://github.com/michalyao/evermonkey/issues)查找相关问题。
 ![Auto-Open Markdown Preview 预览效果](https://raw.githubusercontent.com/chenkang084/notes/master/imgs/blogs/vscode-3.png)
+
+## 总结：
+马克飞象是一款非常好用的印象笔记插件，完全可以胜任以上所有功能，而且界面非常华丽，使用也很简单，但是，**要收费。。。** 之前用sublime的时候，就使用过相关插件，在sublime 里面实现编辑文章，同步到印象笔记。现在使用vscode比较多，就试试看有没有相关的功能，结果是肯定的（vscode这么优秀，怎能没有呢）。所以就尝试了一下，但是，遇到了个坑，就是`Evernote Error: 5 - Note.title`，查了半天说是`CRLF`切换成`LF`，我也确实在用户配置里面设置了，但是，就是不生效。最后，无意间发现，右下角显示的还是`CRLF`,然后尝试着点了一下，竟然可以改为`LF`,再然后呢，就没有然后了，OK了。<br>
+
+虽然费了一大会功夫，但是还是有收获的，就是，这个不要钱。。。<br>
+
+还有一个功能是马克飞象、印象笔记做不到的，印象笔记的内容保存在哪里我们并不知道，如果你想将这些内容同步到git上面，貌似是没有办法的。而使用vscode写*.md，文件内容都是在你指定的目录中，你可以随时将这些文件add,commit,push到git上面，是不是很方便。。。
