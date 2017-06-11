@@ -1,4 +1,10 @@
-#浏览器tab通信之storage
+---
+title: note title
+tags: tag1, tag2, tag3
+notebook: notebook
+---
+
+# 浏览器tab通信之storage
 @(js)
 
 ```javascript

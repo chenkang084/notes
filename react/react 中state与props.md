@@ -1,8 +1,14 @@
+---
+title: react 中state与props
+tags: react
+notebook: react
+---
+
 # react 中state与props
 
-@(react)
 
-##  1、redux 执行顺序
+
+##  1、redux 执行顺序22
 ------------------------------
 >redux 中 react 组件执行顺序：
 1.执行mapStateToProps；
