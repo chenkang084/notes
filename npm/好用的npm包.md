@@ -20,3 +20,4 @@ db.connect({
 - [intro.js](https://github.com/usablica/intro.js) : 主要用于网页的guide模块。
 - [nprogress](https://github.com/rstacruz/nprogress) : 主要用于做ajax请求进度条。
 
+- [keymaster](https://github.com/madrobby/keymaster) :可以对键盘各种按键进行监听。
