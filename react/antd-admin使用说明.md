@@ -27,3 +27,5 @@ reducer 方法必须返回一个state对象。
 - subscriptions 有2个作用；1：做页面初始化工作；2：页面事件监听。
 
 官方推荐的count 案例，似乎没有实现 1秒能按多少下，自己实现了一下，顺便学习了一下dva。
+<https://github.com/chenkang084/dva-demos>
+
