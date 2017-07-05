@@ -8,7 +8,7 @@ notebook: react
 
 
 
-##  1、redux 执行顺序22
+##  1、redux 执行顺序
 ------------------------------
 >redux 中 react 组件执行顺序：
 1.执行mapStateToProps；
@@ -58,7 +58,7 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps)(All);
 ```
-###1.1 mapStateToProps 
+### 1.1 mapStateToProps 
 该方法结合react-redux 的 **connect** 方法，将store 绑定到容器的props上面。
  在该容器上面，如果不执行dispatch方法，默认在conncet 容器之后，会最先执行mapStateToProps 方法，再执行render方法，再执行componentDidMount。
 当该容器绑定的state发送改变的时候，以上方法会按顺序一次被执行。

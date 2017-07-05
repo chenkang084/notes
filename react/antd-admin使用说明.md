@@ -29,5 +29,10 @@ reducer 方法必须返回一个state对象。
 官方推荐的count 案例，似乎没有实现 1秒能按多少下，自己实现了一下，顺便学习了一下dva。
 <https://github.com/chenkang084/dva-demos>
 
-- routers 目录里相当于container容器，需要被connect
+- routers 目录里相当于container容器，被connect的组件都可以视为容器；
+> connect过的组件就可以使用dispatch 方法，如果子组件需要使用dispatch方法，则需要通过属性传递的方式进行调用。
 
+- saga-redux的select
+> select 方法是为了获取Store state 上的数据（例如，返回 selector(getState(), ...args) 的结果）。selector: Function - 一个 (state, ...args) => args 函数. 通过当前 state 和一些可选参数，返回当前 Store state 上的部分数据。<br>
+
+> 如果 select 调用时参数为空（即 yield select()），那 effect 会取得整个的 state（和调用 getState() 的结果一样）。
