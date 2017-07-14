@@ -13,3 +13,18 @@ require('./config/mypath.js')
 console.log(__dirname)
 //d:\Users\git\react\react-admin\config
 ```
+
+## 2.await async
+- async 方法执行会立即返回一个promise对象，然后继续执行下面的代码。async方法内部的代码是同步执行的，后面的await需要等待前面的await方法执行完后才能执行。
+
+## 3.node http模块中 end,finish 的区别
+end and finish are the same event BUT on different types of Streams.
+- stream.Readable fires ONLY end and NEVER finish
+- stream.Writable fires ONLY finish and NEVER end
+```
+Why the different naming of the same event?
+
+The only reason I could think of is because of duplex streams (stream.Duplex), which implement both stream.Readable and stream.Writable interfaces (https://nodejs.org/dist/latest-v5.x/docs/api/stream.html#stream_class_stream_duplex) are readable and writable stream at the same time. To differentiate between end of reading and end of writing on the stream you must have a different event fired. SO, for Duplex streams end is end of reading and finish is end of writing.
+```
+
+reference:[stackoverflow](https://stackoverflow.com/questions/28334610/whats-the-difference-between-end-and-finish-events-in-node-streams)
