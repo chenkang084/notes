@@ -28,3 +28,58 @@ The only reason I could think of is because of duplex streams (stream.Duplex), w
 ```
 
 reference:[stackoverflow](https://stackoverflow.com/questions/28334610/whats-the-difference-between-end-and-finish-events-in-node-streams)
+
+## 4.sequelize库的使用方法
+- 1.创建连接
+```
+const Sequelize = require("sequelize");
+//创建连接
+const sequelize = new Sequelize("game", "root", "root", {
+    host: "localhost",
+    dialect: "mysql",
+
+    pool: {
+      max: 5,
+      min: 0,
+      idle: 10000
+    }
+  });
+//测试连接
+  sequelize
+    .authenticate()
+    .then(() => {
+      console.log("Connection has been established successfully.");
+    })
+    .catch(err => {
+      console.error("Unable to connect to the database:", err);
+    });
+```
+
+- 2.定义model
+
+```
+//定义model
+var SocialUrl = db.define(
+    "SocialUrl",
+    {
+    videoURL: Sequelize.STRING,
+    },
+    {
+    tableName: "social_urls",
+    timestamps: false
+    }
+);
+//同步映射
+var SocialUrlPromise = SocialUrl.sync()
+```
+
+- 3.在request中处理查询
+```
+app.get("/insert", (req, res) => {
+    SocialUrlPromise.then(()=>{
+        SocialUrl.findAll().then(users => {
+            res.send(users)
+        });
+    })
+})
+```
