@@ -1,3 +1,9 @@
+---
+title: nodejs 学习记录
+tags: vscode markdown
+notebook: nodejs
+---
+
 # nodejs 学习记录
 ## 1.process.cwd()、path、__dirname的区别
 - process.cwd()指的是运行该nodejs 进程时的路径，与path.resolve()方法的返回值一致，即执行 **node xx.js** 时所在的路径，及时在子目录里面执行 **path.resolve()/process.cwd()**，获取的值仍然是 **node xxx.js**时的目录；
@@ -82,4 +88,57 @@ app.get("/insert", (req, res) => {
         });
     })
 })
+```
+
+## 5.fs.read,fs.readFile,fs.createReadStream的区别
+
+首先看一下各自需要的参数：<br>
+- fs.readFile(path[, options], callback)<br>
+由于readFile的参数里面没有buffer，所以，readFile是一次性把文件的所有内容读取到内存中，对于操作非常大（> 1G）的文件慎用，性能差，而且会造成内存爆棚。
+```
+const fs = require("fs");
+const path = require("path");
+let file2 = path.resolve("D", "/test/a2.log");
+
+fs.readFile(file2, (err, data) => {
+  console.log(data.length);
+});
+```
+
+- fs.read(fd, buffer, offset, length, position, callback) <br>
+
+fs.read的参数中包含buffer，因此，该方式一次只读取buffer长度的数据，读取长度，读取位置可控,多用于从文件的某个位置开始读取数据。<br>
+fs.read使用需要fd，就需要先调用fs.open方法，在回调里面获取fd。
+```
+const fs = require("fs");
+const path = require("path");
+let file = path.resolve("D", "/test/a.log");
+let file2 = path.resolve("D", "/test/a2.log");
+
+fs.open(file, "r", (err, fd) => {
+  let buf = new Buffer(1024);
+  fs.read(fd, buf, 0, 1024, 0, (err, bytesRead, buf2) => {
+    console.log(buf2.slice(0, bytesRead).toString());
+  });
+});
+```
+- fs.createReadStream(path[, options]) <br>
+以流的形式读取数据，先创建流，返回ReadStream对象。ReadStream是基于事件，调用data等事件，依次读取数据。该方法主要用于读取非常大的文件，不能控制读取位置。
+```
+const fs = require("fs");
+const path = require("path");
+let file = path.resolve("D", "/test/a2.log");
+
+let readStream = fs.createReadStream(file, {
+  flags: "r",
+  defaultEncoding: "utf8",
+  autoClose: true,
+  start: 0
+});
+
+readStream.on("data", chunk => {
+  writeStream.write(chunk,function(){
+      console.log('ok')
+  })
+});
 ```
