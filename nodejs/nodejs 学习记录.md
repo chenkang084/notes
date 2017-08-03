@@ -123,7 +123,7 @@ fs.open(file, "r", (err, fd) => {
 });
 ```
 - fs.createReadStream(path[, options]) <br>
-以流的形式读取数据，先创建流，返回ReadStream对象。ReadStream是基于事件，调用data等事件，依次读取数据。该方法主要用于读取非常大的文件，不能控制读取位置。
+以流的形式读取数据，先创建流，返回ReadStream对象。ReadStream是基于事件，调用data等事件，依次读取数据。该方法主要用于读取非常大的文件，通过设置start，end也可以从某个位置开始读取，而不是直接读取整个文件。
 ```
 const fs = require("fs");
 const path = require("path");
@@ -142,3 +142,30 @@ readStream.on("data", chunk => {
   })
 });
 ```
+
+## 6.express session 与 redis
+- express<br>
+express4.X 默认情况下，没有session中间件，需要自己指定,`npm install express-session`。<br>
+```
+var app = express()
+app.set('trust proxy', 1) // trust first proxy
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: true }
+}))
+```
+- redis<br>
+将session保存在redis中，一方面可以提高服务器内存使用效率，另一方便也可以提高session性能，并且数据可以持久化在redis数据库中，`npm install connect-redis express-session`。
+```
+var session = require('express-session');
+var RedisStore = require('connect-redis')(session);
+
+app.use(session({
+    store: new RedisStore(options),
+    secret: 'keyboard cat',
+    //ttl: 30
+}));
+```
+redis默认持久化24小时，可以通过**ttl**设置缓存时间，单位是秒。
