@@ -22,3 +22,41 @@ state的值只能在本组件内通过setState方法修改，state向下组件�
 
 当组件层级比较多的时候，通过回调的方式更新父组件state来改变各级响应，这种方式写起来要经过多次传递，比较容易写错，这个时候，就可以考虑使用redux进行通信。redux可以理解为一个全局的状态管理工具，主要用于组件之间相互通信，尤其是没有关联关系组件之间的通信。
 
+## 2.react 组件
+- 在jsx语法中，自定义组件时，首字母必须大写。
+`In JSX, lower-case tag names are considered to be HTML tags. `
+
+自定义组件的方法：
+
+```
+import React from 'react';
+
+export default (props) =>{
+  console.log('xxxxxxxxxxxxxxxvvvvvvvv11')
+  console.log(props.children)
+  return (
+    <div>
+      test
+    </div>
+  )
+}
+
+```
+类方法定义组件：
+```
+export default class Mytest extends React.Component{
+  constructor(props){
+    super(props)
+    console.log(this)
+  }
+
+  render(){
+    return (
+      <div>
+        test
+      </div>
+    )
+  }
+}
+```
+类方法定义组件，可以使用setState相关方法。
