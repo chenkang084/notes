@@ -259,6 +259,14 @@ app.use(session({
     //ttl: 30
 }));
 ```
+### 6.1 redis 命令
+- window下启动redis,在安装目录下执行 `redis-server.exe redis.windows.conf`
+- 连接redis，在安装目录下执行 `redis-cli`
+- 查看所有的keys `keys *`
+- 删除当前数据库中的所有Key `flushdb`
+- 删除所有数据库中的key `flushall`
+
+
 redis默认持久化24小时，可以通过**ttl**设置缓存时间，单位是秒。
 
 ## 7.webpack devServer中contentBase与publicPath的区别
@@ -338,3 +346,60 @@ alert(str.match(p))
 ```
 在调用全局的RegExp对象的时候，exec()的第一个元素始终返回第一个满足条件的配置值，如果有子表达式，怎依次返回各个字表达匹配到一个元素。
 match，如果没有子元素，只返回所有满足条件的字符串；如果有字表达，返回包含子元素的表达式。
+
+# 9.ajax跨域请求携带客户端cookie信息
+- 开启**withCredentials**
+```
+let instance = axios.create({
+  baseURL: config.uri.api,
+  withCredentials: true
+})
+```
+- server端，不能使用`res.header("Access-Control-Allow-Origin", "*");`，可以指定白名单，用逗号分隔，也可以动态指定，如下
+```
+app.all("*", function(req: any, res, next) {
+  res.header(
+    "Access-Control-Allow-Origin",
+    // 关键代码
+    req.headers.origin
+  );
+  res.header("Access-Control-Allow-Credentials", "true");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild"
+  );
+  res.header(
+    "Access-Control-Allow-Methods",
+    "PUT, POST, GET, DELETE, OPTIONS,PATCH"
+  );
+  if (req.method == "OPTIONS") {
+    res.sendStatus(200);
+    /让options请求快速返回/;
+  } else {
+    next();
+  }
+});
+```
+
+# 10.webpack devser proxy配置
+```
+devServer: {
+    contentBase: "./", //webpack server read file path
+    colors: true, //terminal shows log with color
+    historyApiFallback: true, //
+    progress: true,
+    compress: true,
+    disableHostCheck: true,
+    port: 9000,
+    proxy: {
+      "/game-be": {
+        target: "http://127.0.0.1:8888/",
+        secure: false,
+        pathRewrite: {"^/game-be" : ""}        
+      }
+    }
+  },
+```
+说明："/game-be"指的是，/game_be/xxx的请求将代理到http://127.0.0.1:8888/。如果没有指定pathRewrite的话，
+http://localhost:9000/game_be/userInfo 将会转换为 http://127.0.0.1:8888/game_be/userInfo。<br>
+如果指定pathRewrite，转换后的结果将是 http://127.0.0.1:8888/userInfo 。
