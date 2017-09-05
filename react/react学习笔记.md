@@ -60,3 +60,25 @@ export default class Mytest extends React.Component{
 }
 ```
 类方法定义组件，可以使用setState相关方法。
+
+## 3.react 组件生命周期
+通过反复试验，得到了组件的生命周期在不同状态下的执行顺序：
+
+当首次装载组件时，按顺序执行 getDefaultProps、getInitialState、componentWillMount、render 和 componentDidMount；
+
+当卸载组件时，执行 componentWillUnmount；
+
+当重新装载组件时，此时按顺序执行 getInitialState、componentWillMount、render 和 componentDidMount，但并不执行 getDefaultProps；
+
+当再次渲染组件时，组件接受到更新状态，此时按顺序执行 componentWillReceiveProps、shouldComponentUpdate、componentWillUpdate、render 和 componentDidUpdate。
+
+参考文章 [React 源码剖析系列 － 生命周期的管理艺术](https://zhuanlan.zhihu.com/p/20312691)
+
+> 重点说明：
+  不建议在 getDefaultProps、getInitialState、shouldComponentUpdate、componentWillUpdate、render 和 componentWillUnmount 中调用 setState，特别注意：不能在 shouldComponentUpdate 和 componentWillUpdate中调用 setState，会导致循环调用。
+
+  - componentWillUpdate 
+  不能在这个方法里面修改state，可能会造成死循环，该方法调用的时候，其实还没有接收到 **变化后**的state或者props。可以在该方法里面做一些动画操作，[Stack Overflow](https://stackoverflow.com/questions/33075063/what-is-the-exact-usage-of-componentwillupdate-in-reactjs)
+
+  - componentDidUpdate
+执行该方式的时候，已经获取到了**变化后**的state或者props,可以在该方法中更新state，但是，最好加入 限定条件，否则也会陷入死循环。
