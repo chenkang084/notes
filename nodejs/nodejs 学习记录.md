@@ -403,3 +403,13 @@ devServer: {
 说明："/game-be"指的是，/game_be/xxx的请求将代理到http://127.0.0.1:8888/。如果没有指定pathRewrite的话，
 http://localhost:9000/game_be/userInfo 将会转换为 http://127.0.0.1:8888/game_be/userInfo。<br>
 如果指定pathRewrite，转换后的结果将是 http://127.0.0.1:8888/userInfo 。
+
+# 11.pm2 
+pm2 是node在生成环境中，通过多集群的方式，解决node单线程，一台cluster上面的node程序挂掉，不至于整个应用都挂掉的情况。当一台cluster挂掉，立刻切换到另外一台cluster上面，确保从用户角度，整个应用是稳定的。
+使用方法：
+> npm install pm2 -g <br>
+  pm2 start index.js -i 4  //index.js 代表程序主入口，-i 代表启动几个集群，默认情况可以不设置，根据当前系统的内核数量，启动多少台cluster <br>
+  pm2 stop all // 停止所有的集群 <br> 
+  pm2 logs <br>
+
+更多用法[参考](https://github.com/Unitech/pm2)
