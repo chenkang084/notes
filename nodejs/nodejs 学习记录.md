@@ -401,7 +401,7 @@ devServer: {
   },
 ```
 说明："/game-be"指的是，/game_be/xxx的请求将代理到http://127.0.0.1:8888/。如果没有指定pathRewrite的话，
-http://localhost:9000/game_be/userInfo 将会转换为 http://127.0.0.1:8888/game_be/userInfo。<br>
+http://localhost:9000/game_be/userInfo 将会转换为 http://127.0.0.1:8888/game_be/userInfo。
 如果指定pathRewrite，转换后的结果将是 http://127.0.0.1:8888/userInfo 。
 
 # 11.pm2 
